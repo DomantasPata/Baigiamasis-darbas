@@ -1,13 +1,20 @@
 import express from "express";
+import {
+  createNewParticipant,
+  getParticipants,
+  deleteParticipant,
+  updateParticipant,
+} from "../controllers/newParticipantController.js";
+import { validateParticipantForm } from "../middlewares/validateParticipantForm.js";
 
 const router = express.Router();
 
-router.get("/participants");
+router.get("/participants", getParticipants);
 
-router.post("participants");
+router.post("/participants", validateParticipantForm, createNewParticipant);
 
-router.put("/participants/:id");
+router.put("/participants/:id", updateParticipant);
 
-router.delete("/participants/:id");
+router.delete("/participants/:id", deleteParticipant);
 
 export default router;

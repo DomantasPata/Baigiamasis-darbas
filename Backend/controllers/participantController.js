@@ -44,14 +44,14 @@ export async function loginNewParticipant(req, res) {
       return res.status(400).json({ error: "Incorrect username or password" });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, User.password);
+    const isPasswordCorrect = bcrypt.compare(password, User.password);
 
     if (isPasswordCorrect) {
-      const secretKey = process.env.SECRET_KEY;
+      const authKey = process.env.AUTH_KEY;
 
       const token = jwt.sign(
         { id: User._id, username: User.username },
-        secretKey,
+        authKey,
         { expiresIn: "1h" }
       );
 
