@@ -37,7 +37,7 @@ export default function Login() {
         password,
       });
 
-      localStorage.setItem("authToken", response.data.auth);
+      localStorage.setItem("auth", response.data.auth);
 
       setSuccess("Login successful. You will be redirected in a second.");
 

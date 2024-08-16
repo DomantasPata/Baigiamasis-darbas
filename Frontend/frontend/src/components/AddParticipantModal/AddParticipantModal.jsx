@@ -7,6 +7,27 @@ export default function AddParticipantModal({ onClose, onAdd }) {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
 
+  function handleAgeChange(e) {
+    const value = e.target.value;
+
+    if (!Number.isInteger(Number(value))) {
+      alert("Age must be an integer.");
+      return;
+    }
+
+    if (value < 0) {
+      alert("Age cannot be less than 0.");
+      return;
+    }
+
+    if (value > 100) {
+      alert("Age cannot be more than 100.");
+      return;
+    }
+
+    setAge(value);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -51,14 +72,18 @@ export default function AddParticipantModal({ onClose, onAdd }) {
             <input
               type="number"
               value={age}
-              onChange={(e) => setAge(e.target.value)}
+              onChange={handleAgeChange}
               required
             />
           </label>
-          <button type="submit">Add</button>
-          <button type="button" onClick={onClose}>
-            Close
-          </button>
+          <div className={styles.buttonGroup}>
+            <button className={styles.submitButton} onClick={handleSubmit}>
+              Add
+            </button>
+            <button className={styles.cancelButton} onClick={onClose}>
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -13,8 +13,13 @@ export default function ParticipantTable() {
   const [addParticipantModalOpen, setAddParticipantModalOpen] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem("auth");
     axios
-      .get(`${API_HOST}/participants`)
+      .get(`${API_HOST}/participants`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setParticipants(response.data);
       })
@@ -85,9 +90,9 @@ export default function ParticipantTable() {
 
   return (
     <div className={styles.container}>
-      <h1>Event Participants</h1>
+      <h1>Registered Rally Participants</h1>
       <button className={styles.addButton} onClick={openAddParticipantModal}>
-        Add New Participant
+        Add new
       </button>
       <div className={styles.participantGrid}>
         {participants.map((participant, index) => (

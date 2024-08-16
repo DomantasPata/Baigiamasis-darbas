@@ -1,23 +1,36 @@
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
+  background-image: url("/dashboardrally.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0;
 }
 
 .participantGrid {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
 }
 
 .participantTable {
-  background-color: #f8f8f8;
+  background-color: white;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 8px;
@@ -49,8 +62,8 @@ tbody tr:last-child td {
 
 .buttonGroup {
   display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
-  gap: 10px; /* Small gap between buttons */
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 button {
@@ -61,21 +74,21 @@ button {
 }
 
 .deleteButton {
-  background-color: #f44336; /* Red background color */
-  color: white; /* White text color */
+  background-color: #f44336;
+  color: white;
 }
 
 .deleteButton:hover {
-  background-color: #c62828; /* Darker red for hover effect */
+  background-color: #c62828;
 }
 
 .updateButton {
-  background-color: #4caf50; /* Green background color */
-  color: white; /* White text color */
+  background-color: #4caf50;
+  color: white;
 }
 
 .updateButton:hover {
-  background-color: #388e3c; /* Darker green for hover effect */
+  background-color: #388e3c;
 }
 
 .addButton {

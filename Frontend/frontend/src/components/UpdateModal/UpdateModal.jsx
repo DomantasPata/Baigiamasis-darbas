@@ -1,81 +1,93 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./UpdateModal.module.css";
 
 export default function UpdateModal({ participant, onClose, onUpdate }) {
-  const [formData, setFormData] = useState({
-    firstName: participant.firstName,
-    lastName: participant.lastName,
-    email: participant.email,
-    age: participant.age,
-  });
+  const [firstName, setFirstName] = useState(participant.firstName);
+  const [lastName, setLastName] = useState(participant.lastName);
+  const [email, setEmail] = useState(participant.email);
+  const [age, setAge] = useState(participant.age);
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  useEffect(() => {
+    setFirstName(participant.firstName);
+    setLastName(participant.lastName);
+    setEmail(participant.email);
+    setAge(participant.age);
+  }, [participant]);
+
+  function handleAgeChange(e) {
+    const value = e.target.value;
+
+    if (!Number.isInteger(Number(value))) {
+      alert("Age must be an integer.");
+      return;
+    }
+
+    if (value < 0) {
+      alert("Age cannot be less than 0.");
+      return;
+    }
+
+    if (value > 100) {
+      alert("Age cannot be more than 100.");
+      return;
+    }
+
+    setAge(value);
   }
 
-  function handleUpdate() {
-    onUpdate(participant._id, formData);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const updatedData = { firstName, lastName, email, age };
+    onUpdate(participant._id, updatedData);
   }
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
         <h2>Update Participant</h2>
-        <form>
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="age">Age:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            required
-          />
+        <form onSubmit={handleSubmit}>
+          <label>
+            First Name:
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Last Name:
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Email:
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Age:
+            <input
+              type="number"
+              value={age}
+              onChange={handleAgeChange}
+              required
+            />
+          </label>
           <div className={styles.buttonGroup}>
-            <button
-              type="button"
-              onClick={onClose}
-              className={styles.closeButton}
-            >
-              Close
+            <button className={styles.submitButton} onClick={handleSubmit}>
+              Update
             </button>
-            <button
-              type="button"
-              onClick={handleUpdate}
-              className={styles.confirmButton}
-            >
-              Confirm
+            <button className={styles.cancelButton} onClick={onClose}>
+              Close
             </button>
           </div>
         </form>

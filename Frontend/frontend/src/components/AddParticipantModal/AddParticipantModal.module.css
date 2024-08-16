@@ -38,30 +38,31 @@ input {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-top: 5px;
+  box-sizing: border-box;
   width: 100%;
 }
 
-button {
-  padding: 10px;
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.submitButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  color: #fff;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-button[type="submit"] {
-  background-color: #007bff;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-button[type="button"] {
-  background-color: #6c757d;
-}
-
-button[type="button"]:hover {
-  background-color: #5a6268;
+.cancelButton {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

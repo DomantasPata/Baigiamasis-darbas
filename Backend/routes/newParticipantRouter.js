@@ -6,10 +6,11 @@ import {
   updateParticipant,
 } from "../controllers/newParticipantController.js";
 import { validateParticipantForm } from "../middlewares/validateParticipantForm.js";
+import validateToken from "../middlewares/validateAuthorization.js";
 
 const router = express.Router();
 
-router.get("/participants", getParticipants);
+router.get("/participants", validateToken, getParticipants);
 
 router.post("/participants", validateParticipantForm, createNewParticipant);
 
