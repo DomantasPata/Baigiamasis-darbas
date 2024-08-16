@@ -42,7 +42,7 @@ export default function Register() {
       });
 
       setSuccess(
-        "Registration successful. You will be redirected to the login page in a second"
+        "Registration successful. You will be redirected to the login page in a second."
       );
       setTimeout(() => {
         navigate("/login");

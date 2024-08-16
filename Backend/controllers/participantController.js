@@ -49,13 +49,13 @@ export async function loginNewParticipant(req, res) {
     if (isPasswordCorrect) {
       const authKey = process.env.AUTH_KEY;
 
-      const token = jwt.sign(
+      const auth = jwt.sign(
         { id: User._id, username: User.username },
         authKey,
         { expiresIn: "1h" }
       );
 
-      res.json({ token });
+      res.json({ auth });
     } else {
       res.status(400).json({ error: "Incorrect username or password" });
     }

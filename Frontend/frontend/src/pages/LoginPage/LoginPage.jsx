@@ -37,9 +37,13 @@ export default function Login() {
         password,
       });
 
-      // Handle success
-      setSuccess("Login successful");
-      // Redirect or handle login success as needed
+      localStorage.setItem("authToken", response.data.auth);
+
+      setSuccess("Login successful. You will be redirected in a second.");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (err) {
       setError("Login failed. Please try again.");
       setSuccess("");
