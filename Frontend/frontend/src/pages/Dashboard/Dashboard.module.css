@@ -49,8 +49,8 @@ tbody tr:last-child td {
 
 .buttonGroup {
   display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
-  gap: 10px; /* Small gap between buttons */
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 button {
@@ -61,19 +61,19 @@ button {
 }
 
 .deleteButton {
-  background-color: #f44336; /* Red background color */
-  color: white; /* White text color */
+  background-color: #f44336;
+  color: white;
 }
 
 .deleteButton:hover {
-  background-color: #c62828; /* Darker red for hover effect */
+  background-color: #c62828;
 }
 
 .updateButton {
-  background-color: #4caf50; /* Green background color */
-  color: white; /* White text color */
+  background-color: #4caf50;
+  color: white;
 }
 
 .updateButton:hover {
-  background-color: #388e3c; /* Darker green for hover effect */
+  background-color: #388e3c;
 }
